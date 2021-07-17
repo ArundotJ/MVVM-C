@@ -9,7 +9,7 @@ import Foundation
 
 protocol RepositaryHandler {
     func createRecord(record: Employe)
-    func getAllRecord() -> [Employe]
+    func getAllRecords() -> [Employe]
     func updateRecord(id: Int)
     func deleteRecord(record: Employe)
 }

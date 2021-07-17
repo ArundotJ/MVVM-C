@@ -31,13 +31,12 @@ final class AddEmployeeDetailsViewController: UIViewController {
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         guard let nameValue = nameTextField.text,
-              let employeId = Int(employeIDTextfield.text ?? "0"),
-              let phoneNumber = Int(phoneTextField.text ?? "0"),
+              let phoneNumber = Int32(phoneTextField.text ?? "0"),
               let imageData = profileImageView.image?.pngData() else {
             return
         }
         viewModel.saveEmployeData(employe: Employe(name: nameValue,
-                                                   employeID: employeId,
+                                                   employeID: UUID(),
                                                    phone: phoneNumber,
                                                    profileImage: imageData))
     }

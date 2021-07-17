@@ -19,7 +19,7 @@ final class EmployeDataRespositary: RepositaryHandler {
         PersistanceManager.shared.saveChanges()
     }
     
-    func getAllRecord() -> [Employe] {
+    func getAllRecords() -> [Employe] {
         if let records = PersistanceManager.shared.fetchRecords(objectType: CDEmploye.self) {
             return records.map({ $0.convertToEmploye()})
         }

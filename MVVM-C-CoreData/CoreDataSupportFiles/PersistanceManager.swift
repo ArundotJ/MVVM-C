@@ -36,3 +36,17 @@ final class PersistanceManager {
         }
     }
 }
+
+extension PersistanceManager {
+    func fetchRecords<T: NSManagedObject> (objectType: T.Type) -> [T]? {
+        do {
+            guard let result = try managerObjectContext.fetch(objectType.fetchRequest()) as? [T] else {
+                return []
+            }
+            return result
+        } catch {
+            debugPrint("Error while loading data \(error.localizedDescription)")
+            return nil
+        }
+    }
+}
