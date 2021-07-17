@@ -30,6 +30,9 @@
 		B8691B8B26A1EEB90076DBE8 /* PersistanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8691B8A26A1EEB90076DBE8 /* PersistanceManager.swift */; };
 		B8B8BAFA26A2911600B06FD6 /* RepositaryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BAF926A2911600B06FD6 /* RepositaryHandler.swift */; };
 		B8B8BAFD26A291E200B06FD6 /* EmployeRespositary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BAFC26A291E200B06FD6 /* EmployeRespositary.swift */; };
+		B8B8BB0126A2952800B06FD6 /* OrganizationRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BAFF26A2952800B06FD6 /* OrganizationRecord.xcdatamodeld */; };
+		B8B8BB0B26A2960A00B06FD6 /* CDEmploye+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BB0926A2960A00B06FD6 /* CDEmploye+CoreDataClass.swift */; };
+		B8B8BB0C26A2960A00B06FD6 /* CDEmploye+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BB0A26A2960A00B06FD6 /* CDEmploye+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +61,9 @@
 		B8691B8A26A1EEB90076DBE8 /* PersistanceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistanceManager.swift; sourceTree = "<group>"; };
 		B8B8BAF926A2911600B06FD6 /* RepositaryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositaryHandler.swift; sourceTree = "<group>"; };
 		B8B8BAFC26A291E200B06FD6 /* EmployeRespositary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeRespositary.swift; sourceTree = "<group>"; };
+		B8B8BB0026A2952800B06FD6 /* OrganizationRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrganizationRecord.xcdatamodel; sourceTree = "<group>"; };
+		B8B8BB0926A2960A00B06FD6 /* CDEmploye+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDEmploye+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B8B8BB0A26A2960A00B06FD6 /* CDEmploye+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDEmploye+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -176,7 +182,10 @@
 		B8691B8926A1EE9D0076DBE8 /* CoreDataSupportFiles */ = {
 			isa = PBXGroup;
 			children = (
+				B8B8BB0926A2960A00B06FD6 /* CDEmploye+CoreDataClass.swift */,
+				B8B8BB0A26A2960A00B06FD6 /* CDEmploye+CoreDataProperties.swift */,
 				B8691B8A26A1EEB90076DBE8 /* PersistanceManager.swift */,
+				B8B8BAFF26A2952800B06FD6 /* OrganizationRecord.xcdatamodeld */,
 			);
 			path = CoreDataSupportFiles;
 			sourceTree = "<group>";
@@ -262,15 +271,18 @@
 			files = (
 				B8691B5926A1EC270076DBE8 /* AppCoordinator.swift in Sources */,
 				B8691B7D26A1ED550076DBE8 /* HomeViewModel.swift in Sources */,
+				B8B8BB0C26A2960A00B06FD6 /* CDEmploye+CoreDataProperties.swift in Sources */,
 				B8691B6726A1ED050076DBE8 /* PassportListCoordinator.swift in Sources */,
 				B8691B8B26A1EEB90076DBE8 /* PersistanceManager.swift in Sources */,
 				B8691B8126A1ED550076DBE8 /* EmployesListViewController.swift in Sources */,
 				B8691B4226A1EBE20076DBE8 /* AppDelegate.swift in Sources */,
+				B8B8BB0126A2952800B06FD6 /* OrganizationRecord.xcdatamodeld in Sources */,
 				B8B8BAFA26A2911600B06FD6 /* RepositaryHandler.swift in Sources */,
 				B8691B6126A1EC900076DBE8 /* HomeCoordinator.swift in Sources */,
 				B8691B5C26A1EC4D0076DBE8 /* MainTabBarController.swift in Sources */,
 				B8691B8626A1EDDB0076DBE8 /* Employe.swift in Sources */,
 				B8691B4426A1EBE20076DBE8 /* SceneDelegate.swift in Sources */,
+				B8B8BB0B26A2960A00B06FD6 /* CDEmploye+CoreDataClass.swift in Sources */,
 				B8691B7F26A1ED550076DBE8 /* PassportsListViewController.swift in Sources */,
 				B8691B6426A1ECD10076DBE8 /* EmployeViewCooridnator.swift in Sources */,
 				B8691B7C26A1ED550076DBE8 /* AddEmployeeDetailsViewModel.swift in Sources */,
@@ -471,6 +483,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B8B8BAFF26A2952800B06FD6 /* OrganizationRecord.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B8B8BB0026A2952800B06FD6 /* OrganizationRecord.xcdatamodel */,
+			);
+			currentVersion = B8B8BB0026A2952800B06FD6 /* OrganizationRecord.xcdatamodel */;
+			path = OrganizationRecord.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B8691B3626A1EBE20076DBE8 /* Project object */;
 }

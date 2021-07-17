@@ -10,7 +10,7 @@ import Foundation
 
 struct Employe {
     let name: String
-    let employeID: Int
-    let phone: Int
+    let employeID: UUID
+    let phone: Int32
     let profileImage: Data
 }

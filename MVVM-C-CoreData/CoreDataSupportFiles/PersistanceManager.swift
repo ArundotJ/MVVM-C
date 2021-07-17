@@ -15,7 +15,7 @@ final class PersistanceManager {
     private init() {}
     
     lazy var persistanceContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "")
+        let container = NSPersistentContainer(name: "OrganizationRecord")
         container.loadPersistentStores { (_, error) in
             fatalError("Failed to load DataModel")
         }
