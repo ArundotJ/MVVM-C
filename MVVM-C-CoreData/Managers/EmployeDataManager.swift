@@ -7,7 +7,12 @@
 
 import Foundation
 
-final class EmployeDataManager {
+protocol EmployeDataManagerType {
+    func addEmployeRecord(record: Employe)
+    func getAllRecords() -> [Employe]
+}
+
+final class EmployeDataManager: EmployeDataManagerType {
     
     let dataRepository: RepositaryHandler
     

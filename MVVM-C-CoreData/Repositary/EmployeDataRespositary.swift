@@ -12,10 +12,11 @@ final class EmployeDataRespositary: RepositaryHandler {
     
     func createRecord(record: Employe) {
         let newRecored = CDEmploye(context: PersistanceManager.shared.managerObjectContext)
-        newRecored.id = record.employeID
+        newRecored.id = UUID()
+        newRecored.employeId = Int16(record.employeID ?? 0)
         newRecored.profileImageData = record.profileImage
         newRecored.name = record.name
-        newRecored.phoneNumber = record.phone
+        newRecored.phoneNumber = Int64(record.phone)
         PersistanceManager.shared.saveChanges()
     }
     

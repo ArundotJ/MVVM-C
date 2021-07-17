@@ -16,16 +16,16 @@ extension CDEmploye {
         return NSFetchRequest<CDEmploye>(entityName: "CDEmploye")
     }
 
-    @NSManaged public var name: String?
     @NSManaged public var id: UUID?
+    @NSManaged public var name: String?
+    @NSManaged public var phoneNumber: Int64
     @NSManaged public var profileImageData: Data?
-    @NSManaged public var phoneNumber: Int32
+    @NSManaged public var employeId: Int16
 
 }
 
 extension CDEmploye : Identifiable {
-    
     func convertToEmploye() -> Employe {
-        return Employe(name: name, employeID: id, phone: phoneNumber, profileImage: profileImageData)
+        return Employe(name: name, employeID: Int(employeId), phone: Int(phoneNumber), profileImage: profileImageData)
     }
 }

@@ -12,14 +12,15 @@ final class EmployeViewCooridnator: Coordinator {
     
     let navigationController: UINavigationController
     
+    var refreshUI: () -> Void = {}
+    
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }
     
     func start() {
         let employeesList = EmployesListViewController()
-        let viewModel = EmployesListViewModel()
-        viewModel.coordinator = self
+        let viewModel = EmployesListViewModel(coordinator: self, dataManager: EmployeDataManager(dataRepository: EmployeDataRespositary()))
         employeesList.viewModel = viewModel
         employeesList.title = employeesList.viewModel.title
         employeesList.tabBarItem = UITabBarItem(title: employeesList.title, image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))
@@ -37,6 +38,11 @@ final class EmployeViewCooridnator: Coordinator {
             return childCoordinator === coordinator
         }) else { return }
         childCoordinators.remove(at: index)
+    }
+    
+    func saveAndDismissAddDetailsView(_ coordinator: Coordinator) {
+        dismissViewController(coordinator)
+        refreshUI()
     }
 }
 

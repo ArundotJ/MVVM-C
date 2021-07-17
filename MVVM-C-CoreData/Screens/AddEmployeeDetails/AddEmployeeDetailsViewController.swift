@@ -21,6 +21,11 @@ final class AddEmployeeDetailsViewController: UIViewController {
     }
     
     private func configureView() {
+        
+        let tapGuester = UITapGestureRecognizer(target: self, action: #selector(addProfilePhoto))
+        tapGuester.numberOfTapsRequired = 1
+        profileImageView.isUserInteractionEnabled = true
+        profileImageView.addGestureRecognizer(tapGuester)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = viewModel.title
     }
@@ -31,28 +36,26 @@ final class AddEmployeeDetailsViewController: UIViewController {
     
     @IBAction func submitButtonTapped(_ sender: Any) {
         guard let nameValue = nameTextField.text,
-              let phoneNumber = Int32(phoneTextField.text ?? "0"),
+              let employeId = employeIDTextfield.text,
+              let phoneNumber = Int(phoneTextField.text ?? "0"),
               let imageData = profileImageView.image?.pngData() else {
             return
         }
         viewModel.saveEmployeData(employe: Employe(name: nameValue,
-                                                   employeID: UUID(),
+                                                   employeID: Int(employeId),
                                                    phone: phoneNumber,
                                                    profileImage: imageData))
     }
+    
+    @objc
+    private func addProfilePhoto() {
+        viewModel.addProfileImageButtonTapped(receivedImage: { [weak self] image in
+            self?.profileImageView.image = image
+        })
+    }
+    
+    
     deinit {
         debugPrint("Deinintialized AddEmployeeDetailsViewController")
-    }
-}
-
-extension AddEmployeeDetailsViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        return cell
     }
 }
