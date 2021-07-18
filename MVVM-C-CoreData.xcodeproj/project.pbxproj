@@ -11,6 +11,9 @@
 		B840CC7C26A2DB5100075176 /* CDEmploye+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840CC7A26A2DB5100075176 /* CDEmploye+CoreDataProperties.swift */; };
 		B840CC8026A2DC8F00075176 /* EmployeItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840CC7F26A2DC8F00075176 /* EmployeItemCell.swift */; };
 		B840CC8326A2DCFC00075176 /* EmployeItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840CC8226A2DCFC00075176 /* EmployeItemCellViewModel.swift */; };
+		B840CC8726A346C800075176 /* EmployeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840CC8626A346C800075176 /* EmployeDetailsViewController.swift */; };
+		B840CC8A26A346F300075176 /* EmployeDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840CC8926A346F300075176 /* EmployeDetailsCoordinator.swift */; };
+		B840CC8D26A3481900075176 /* EmployeDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B840CC8C26A3481900075176 /* EmployeDetailsViewModel.swift */; };
 		B8691B4226A1EBE20076DBE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8691B4126A1EBE20076DBE8 /* AppDelegate.swift */; };
 		B8691B4426A1EBE20076DBE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8691B4326A1EBE20076DBE8 /* SceneDelegate.swift */; };
 		B8691B4B26A1EBE20076DBE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8691B4A26A1EBE20076DBE8 /* Assets.xcassets */; };
@@ -37,6 +40,7 @@
 		B8B8BAFA26A2911600B06FD6 /* RepositaryHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BAF926A2911600B06FD6 /* RepositaryHandler.swift */; };
 		B8B8BAFD26A291E200B06FD6 /* EmployeDataRespositary.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BAFC26A291E200B06FD6 /* EmployeDataRespositary.swift */; };
 		B8B8BB0126A2952800B06FD6 /* OrganizationRecord.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8B8BAFF26A2952800B06FD6 /* OrganizationRecord.xcdatamodeld */; };
+		B8C6449C26A3E67100EDEBD8 /* EmployeDetailsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B8C6449B26A3E67100EDEBD8 /* EmployeDetailsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +48,9 @@
 		B840CC7A26A2DB5100075176 /* CDEmploye+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDEmploye+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		B840CC7F26A2DC8F00075176 /* EmployeItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeItemCell.swift; sourceTree = "<group>"; };
 		B840CC8226A2DCFC00075176 /* EmployeItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeItemCellViewModel.swift; sourceTree = "<group>"; };
+		B840CC8626A346C800075176 /* EmployeDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeDetailsViewController.swift; sourceTree = "<group>"; };
+		B840CC8926A346F300075176 /* EmployeDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeDetailsCoordinator.swift; sourceTree = "<group>"; };
+		B840CC8C26A3481900075176 /* EmployeDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeDetailsViewModel.swift; sourceTree = "<group>"; };
 		B8691B3E26A1EBE20076DBE8 /* MVVM-C-CoreData.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MVVM-C-CoreData.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8691B4126A1EBE20076DBE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B8691B4326A1EBE20076DBE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -72,6 +79,7 @@
 		B8B8BAF926A2911600B06FD6 /* RepositaryHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositaryHandler.swift; sourceTree = "<group>"; };
 		B8B8BAFC26A291E200B06FD6 /* EmployeDataRespositary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeDataRespositary.swift; sourceTree = "<group>"; };
 		B8B8BB0026A2952800B06FD6 /* OrganizationRecord.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = OrganizationRecord.xcdatamodel; sourceTree = "<group>"; };
+		B8C6449B26A3E67100EDEBD8 /* EmployeDetailsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmployeDetailsViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +93,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B840CC8526A3469700075176 /* EmployeDetailsScreen */ = {
+			isa = PBXGroup;
+			children = (
+				B8C6449B26A3E67100EDEBD8 /* EmployeDetailsViewController.xib */,
+				B840CC8626A346C800075176 /* EmployeDetailsViewController.swift */,
+				B840CC8C26A3481900075176 /* EmployeDetailsViewModel.swift */,
+			);
+			path = EmployeDetailsScreen;
+			sourceTree = "<group>";
+		};
 		B8691B3526A1EBE20076DBE8 = {
 			isa = PBXGroup;
 			children = (
@@ -129,6 +147,7 @@
 				B8691B6626A1ED050076DBE8 /* PassportListCoordinator.swift */,
 				B8691B6926A1ED340076DBE8 /* AddEmployeDetailsCoordinator.swift */,
 				B895B50526A2A9FA0045427A /* ImagePickerCoordinator.swift */,
+				B840CC8926A346F300075176 /* EmployeDetailsCoordinator.swift */,
 			);
 			path = Coordinator;
 			sourceTree = "<group>";
@@ -136,6 +155,7 @@
 		B8691B6C26A1ED550076DBE8 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				B840CC8526A3469700075176 /* EmployeDetailsScreen */,
 				B8691B6D26A1ED550076DBE8 /* AddEmployeeDetails */,
 				B8691B7126A1ED550076DBE8 /* HomeView */,
 				B8691B7426A1ED550076DBE8 /* PassportsList */,
@@ -278,6 +298,7 @@
 			files = (
 				B8691B4E26A1EBE20076DBE8 /* LaunchScreen.storyboard in Resources */,
 				B8691B7A26A1ED550076DBE8 /* AddEmployeeDetailsViewController.xib in Resources */,
+				B8C6449C26A3E67100EDEBD8 /* EmployeDetailsViewController.xib in Resources */,
 				B8691B4B26A1EBE20076DBE8 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -302,7 +323,9 @@
 				B840CC8326A2DCFC00075176 /* EmployeItemCellViewModel.swift in Sources */,
 				B8691B5C26A1EC4D0076DBE8 /* MainTabBarController.swift in Sources */,
 				B895B50026A29E720045427A /* EmployeDataManager.swift in Sources */,
+				B840CC8726A346C800075176 /* EmployeDetailsViewController.swift in Sources */,
 				B8691B8626A1EDDB0076DBE8 /* Employe.swift in Sources */,
+				B840CC8A26A346F300075176 /* EmployeDetailsCoordinator.swift in Sources */,
 				B8691B4426A1EBE20076DBE8 /* SceneDelegate.swift in Sources */,
 				B8691B7F26A1ED550076DBE8 /* PassportsListViewController.swift in Sources */,
 				B8691B6426A1ECD10076DBE8 /* EmployeViewCooridnator.swift in Sources */,
@@ -312,6 +335,7 @@
 				B895B50626A2A9FA0045427A /* ImagePickerCoordinator.swift in Sources */,
 				B8B8BAFD26A291E200B06FD6 /* EmployeDataRespositary.swift in Sources */,
 				B8691B8226A1ED550076DBE8 /* EmployesListViewModel.swift in Sources */,
+				B840CC8D26A3481900075176 /* EmployeDetailsViewModel.swift in Sources */,
 				B8691B6A26A1ED340076DBE8 /* AddEmployeDetailsCoordinator.swift in Sources */,
 				B8691B7B26A1ED550076DBE8 /* AddEmployeeDetailsViewController.swift in Sources */,
 				B840CC7B26A2DB5100075176 /* CDEmploye+CoreDataClass.swift in Sources */,

@@ -33,6 +33,7 @@ class EmployesListViewController: UIViewController {
     private func configureView() {
         title = viewModel.title
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         view.backgroundColor = .systemBackground
         self.view.addSubview(self.tableView)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addButtonTapped))
@@ -68,5 +69,30 @@ extension EmployesListViewController: UITableViewDataSource {
         }
         cell.configureCell(viewModel: EmployeItemCellViewModel(employe: employe))
         return cell
+    }
+}
+
+extension EmployesListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        viewModel.didSelectEmployeItem(indexPath: indexPath)
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        return UISwipeActionsConfiguration(actions: [deleteContextualAction()])
+    }
+}
+
+extension EmployesListViewController {
+    
+    private func deleteContextualAction() -> UIContextualAction {
+        let action = UIContextualAction(style: .normal, title: "DELETE") { (action, view, completion) in
+            debugPrint("Action DElete")
+            completion(true)
+        }
+        action.image = UIImage(systemName: "trash")
+        action.backgroundColor = .red
+        return action
     }
 }

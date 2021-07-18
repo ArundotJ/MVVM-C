@@ -14,23 +14,30 @@ final class EmployeViewCooridnator: Coordinator {
     
     var refreshUI: () -> Void = {}
     
+    private let employeesListController = EmployesListViewController()
+    
     init(navigation: UINavigationController) {
         self.navigationController = navigation
     }
     
     func start() {
-        let employeesList = EmployesListViewController()
         let viewModel = EmployesListViewModel(coordinator: self, dataManager: EmployeDataManager(dataRepository: EmployeDataRespositary()))
-        employeesList.viewModel = viewModel
-        employeesList.title = employeesList.viewModel.title
-        employeesList.tabBarItem = UITabBarItem(title: employeesList.title, image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))
-        self.navigationController.setViewControllers([employeesList], animated: true)
+        employeesListController.viewModel = viewModel
+        employeesListController.title = employeesListController.viewModel.title
+        employeesListController.tabBarItem = UITabBarItem(title: employeesListController.title, image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))
+        self.navigationController.setViewControllers([employeesListController], animated: true)
     }
     
     func loadAddEmployeeDetailsView() {
         let addEmployeeCoordinator = AddEmployeeDetailsCoordinator(navigationController: self.navigationController, parentCoordinator: self)
         childCoordinators.append(addEmployeeCoordinator)
         addEmployeeCoordinator.start()
+    }
+    
+    func loadEmployeDetailsView(employe: Employe) {
+        let employeDetails = EmployeDetailsCoordinator(navigation: self.employeesListController.navigationController, employeData: employe)
+        childCoordinators.append(employeDetails)
+        employeDetails.start()
     }
     
     func dismissViewController(_ coordinator: Coordinator) {

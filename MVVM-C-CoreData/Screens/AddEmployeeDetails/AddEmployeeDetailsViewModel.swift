@@ -22,8 +22,8 @@ final class AddEmployeeDetailsViewModel: AddEmployeeDetailsViewModelType {
     
     var title: String = "Add"
     
-    var employeList: [Employe] = []
-    
+    var employeRecord: Employe?
+        
     weak var coordinator: AddEmployeeDetailsCoordinator?
     
     var dataManager: EmployeDataManagerType

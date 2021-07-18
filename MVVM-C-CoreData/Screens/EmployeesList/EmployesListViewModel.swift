@@ -13,6 +13,7 @@ protocol EmployesListViewModelType {
     var refreshUI: () -> Void { get set }
     func fetchEmployeDetails()
     func addButtonTapped()
+    func didSelectEmployeItem(indexPath: IndexPath)
 }
 
 final class EmployesListViewModel: EmployesListViewModelType {
@@ -43,5 +44,10 @@ final class EmployesListViewModel: EmployesListViewModelType {
         
     func addButtonTapped() {
         coordinator?.loadAddEmployeeDetailsView()
+    }
+    
+    func didSelectEmployeItem(indexPath: IndexPath) {
+        let employeData = employeList[indexPath.row]
+        self.coordinator?.loadEmployeDetailsView(employe: employeData)
     }
 }
