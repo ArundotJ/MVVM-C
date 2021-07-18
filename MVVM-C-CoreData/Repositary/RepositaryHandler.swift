@@ -10,6 +10,7 @@ import Foundation
 protocol RepositaryHandler {
     func createRecord(record: Employe)
     func getAllRecords() -> [Employe]
-    func updateRecord(id: Int)
-    func deleteRecord(record: Employe)
+    func updateRecord(employeData: Employe)
+    func deleteRecord(id: UUID)
+    func getRecord(id: UUID) -> Employe?
 }

@@ -15,9 +15,12 @@ final class AddEmployeeDetailsViewController: UIViewController {
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileImageView: UIImageView!
     var viewModel: AddEmployeeDetailsViewModelType!
+    @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var updateButton: UIButton!
     
     override func viewDidLoad() {
         configureView()
+        updateEmployeDetails()
     }
     
     private func configureView() {
@@ -28,34 +31,68 @@ final class AddEmployeeDetailsViewController: UIViewController {
         profileImageView.addGestureRecognizer(tapGuester)
         self.navigationController?.navigationBar.prefersLargeTitles = true
         title = viewModel.title
+        submitButton.isHidden = viewModel.showUpdateButton
+        updateButton.isHidden = !viewModel.showUpdateButton
+    }
+    
+    private func updateEmployeDetails() {
+        guard let employeRecord = viewModel.employeDetails else {
+            return
+        }
+        phoneTextField.text = employeRecord.phone
+        employeIDTextfield.text = employeRecord.employeID
+        nameTextField.text = employeRecord.name
+        profileImageView.image = employeRecord.profileImage
     }
     
     override func viewDidDisappear(_ animated: Bool) {
         viewModel.viewDidDisapper()
     }
     
-    @IBAction func submitButtonTapped(_ sender: Any) {
+    @IBAction func updateButtonTapped(_ sender: Any) {
         guard let nameValue = nameTextField.text,
               let employeId = employeIDTextfield.text,
-              let phoneNumber = Int(phoneTextField.text ?? "0"),
+              let phoneNumber = phoneTextField.text,
               let imageData = profileImageView.image?.pngData() else {
             return
         }
-        viewModel.saveEmployeData(employe: Employe(name: nameValue,
-                                                   employeID: Int(employeId),
-                                                   phone: phoneNumber,
-                                                   profileImage: imageData))
+        viewModel.updateEmployeData(name: nameValue,
+                                    phone: phoneNumber,
+                                    employeID: employeId,
+                                    profileImage: imageData)
+    }
+    
+    @IBAction func submitButtonTapped(_ sender: Any) {
+        guard let nameValue = nameTextField.text,
+              let employeId = employeIDTextfield.text,
+              let phoneNumber = phoneTextField.text,
+              let imageData = profileImageView.image?.pngData() else {
+            return
+        }
+        viewModel.saveEmployeData(name: nameValue,
+                                  phone: phoneNumber,
+                                  employeID: employeId,
+                                  profileImage: imageData)
     }
     
     @objc
     private func addProfilePhoto() {
         viewModel.addProfileImageButtonTapped(receivedImage: { [weak self] image in
-            self?.profileImageView.image = image
+            DispatchQueue.main.async {
+                self?.profileImageView.image = image
+            }
         })
     }
     
     
     deinit {
         debugPrint("Deinintialized AddEmployeeDetailsViewController")
+    }
+}
+
+extension AddEmployeeDetailsViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

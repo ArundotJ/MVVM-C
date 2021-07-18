@@ -10,6 +10,9 @@ import Foundation
 protocol EmployeDataManagerType {
     func addEmployeRecord(record: Employe)
     func getAllRecords() -> [Employe]
+    func getRecordFromID(id: UUID) -> Employe?
+    func updateRecord(employeData: Employe)
+    func deleteEmployeRecord(id: UUID)
 }
 
 final class EmployeDataManager: EmployeDataManagerType {
@@ -26,5 +29,17 @@ final class EmployeDataManager: EmployeDataManagerType {
     
     func getAllRecords() -> [Employe] {
         self.dataRepository.getAllRecords()
+    }
+    
+    func getRecordFromID(id: UUID) -> Employe? {
+        self.dataRepository.getRecord(id: id)
+    }
+    
+    func updateRecord(employeData: Employe) {
+        self.dataRepository.updateRecord(employeData: employeData)
+    }
+    
+    func deleteEmployeRecord(id: UUID) {
+        self.dataRepository.deleteRecord(id: id)
     }
 }

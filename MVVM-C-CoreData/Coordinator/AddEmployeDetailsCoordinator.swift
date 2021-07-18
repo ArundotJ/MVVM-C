@@ -7,6 +7,11 @@
 
 import UIKit
 
+protocol AddEmployeeDetailsCoordinatorDelegate: AnyObject {
+    func dismissAddEmployeDetailsView(_ coordinator: Coordinator)
+    var refreshUI: () -> Void { get set }
+}
+
 final class AddEmployeeDetailsCoordinator: Coordinator {
     
     var childCoordinators: [Coordinator] = []
@@ -15,14 +20,15 @@ final class AddEmployeeDetailsCoordinator: Coordinator {
     
     let addEmployeNavigationController = UINavigationController()
     
+    var employeRecord: Employe?
+    
     var didReceiveImage: (UIImage?) -> Void = { _ in }
     
     private var addEmployeDetailsViewModel: AddEmployeeDetailsViewModel?
     
-    weak var parentCoordinator: EmployeViewCooridnator?
+    weak var delegate: AddEmployeeDetailsCoordinatorDelegate?
     
-    init(navigationController: UINavigationController, parentCoordinator: EmployeViewCooridnator) {
-        self.parentCoordinator = parentCoordinator
+    init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
     
@@ -30,18 +36,20 @@ final class AddEmployeeDetailsCoordinator: Coordinator {
         let addEmployeeDetailsController =  AddEmployeeDetailsViewController(nibName: "AddEmployeeDetailsViewController", bundle: Bundle.main)
         addEmployeDetailsViewModel = AddEmployeeDetailsViewModel(coordinator: self,
                                                     dataManager: EmployeDataManager(dataRepository: EmployeDataRespositary()))
+        addEmployeDetailsViewModel?.employeRecord = employeRecord
         addEmployeeDetailsController.viewModel = addEmployeDetailsViewModel
         addEmployeNavigationController.setViewControllers([addEmployeeDetailsController], animated: false)
         self.navigationController.present(addEmployeNavigationController, animated: true, completion: nil)
     }
     
     func dismissAddDetailsView() {
-        self.parentCoordinator?.dismissViewController(self)
+        self.delegate?.dismissAddEmployeDetailsView(self)
     }
     
     func saveAndDismissView() {
         self.addEmployeNavigationController.dismiss(animated: true, completion: nil)
-        self.parentCoordinator?.saveAndDismissAddDetailsView(self)
+        self.delegate?.refreshUI()
+        self.delegate?.dismissAddEmployeDetailsView(self)
     }
     
     func showImagePickerController(imageCompletion: @escaping (UIImage?) -> Void) {

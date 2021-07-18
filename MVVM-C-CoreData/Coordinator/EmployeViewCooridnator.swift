@@ -21,7 +21,8 @@ final class EmployeViewCooridnator: Coordinator {
     }
     
     func start() {
-        let viewModel = EmployesListViewModel(coordinator: self, dataManager: EmployeDataManager(dataRepository: EmployeDataRespositary()))
+        let viewModel = EmployesListViewModel(coordinator: self,
+                                              dataManager: EmployeDataManager(dataRepository: EmployeDataRespositary()))
         employeesListController.viewModel = viewModel
         employeesListController.title = employeesListController.viewModel.title
         employeesListController.tabBarItem = UITabBarItem(title: employeesListController.title, image: UIImage(systemName: "person.3"), selectedImage: UIImage(systemName: "person.3.fill"))
@@ -29,13 +30,16 @@ final class EmployeViewCooridnator: Coordinator {
     }
     
     func loadAddEmployeeDetailsView() {
-        let addEmployeeCoordinator = AddEmployeeDetailsCoordinator(navigationController: self.navigationController, parentCoordinator: self)
+        let addEmployeeCoordinator = AddEmployeeDetailsCoordinator(navigationController: self.navigationController)
+        addEmployeeCoordinator.delegate = self
         childCoordinators.append(addEmployeeCoordinator)
         addEmployeeCoordinator.start()
     }
     
-    func loadEmployeDetailsView(employe: Employe) {
-        let employeDetails = EmployeDetailsCoordinator(navigation: self.employeesListController.navigationController, employeData: employe)
+    func loadEmployeDetailsView(employeID: UUID) {
+        let employeDetails = EmployeDetailsCoordinator(navigation: self.navigationController,
+                                                       employeID: employeID,
+                                                       parentCoordinator: self)
         childCoordinators.append(employeDetails)
         employeDetails.start()
     }
@@ -46,10 +50,11 @@ final class EmployeViewCooridnator: Coordinator {
         }) else { return }
         childCoordinators.remove(at: index)
     }
-    
-    func saveAndDismissAddDetailsView(_ coordinator: Coordinator) {
+}
+
+extension EmployeViewCooridnator: AddEmployeeDetailsCoordinatorDelegate {
+    func dismissAddEmployeDetailsView(_ coordinator: Coordinator) {
         dismissViewController(coordinator)
-        refreshUI()
     }
 }
 

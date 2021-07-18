@@ -47,7 +47,9 @@ final class EmployesListViewModel: EmployesListViewModelType {
     }
     
     func didSelectEmployeItem(indexPath: IndexPath) {
-        let employeData = employeList[indexPath.row]
-        self.coordinator?.loadEmployeDetailsView(employe: employeData)
+        guard let employeID = employeList[indexPath.row].id else {
+            return
+        }
+        self.coordinator?.loadEmployeDetailsView(employeID: employeID)
     }
 }

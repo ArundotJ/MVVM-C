@@ -18,6 +18,9 @@ class EmployeDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
+        viewModel.didUpdateChages = { [weak self] in
+            self?.configureView()
+        }
     }
     
     private func configureView() {
@@ -27,10 +30,17 @@ class EmployeDetailsViewController: UIViewController {
         profileImageView.image = viewModel.profileImage
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        viewModel.viewDidDisappear()
+        super.viewDidDisappear(animated)
+    }
+    
     @IBAction func updateButtonTapped(_ sender: Any) {
+        viewModel.updateButtonTapped()
     }
     
     @IBAction func deleteButtonTapped(_ sender: Any) {
+        viewModel.deleteButtonTapped()
     }
     
 }

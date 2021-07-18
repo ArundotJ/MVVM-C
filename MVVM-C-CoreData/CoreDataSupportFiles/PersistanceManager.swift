@@ -40,9 +40,14 @@ final class PersistanceManager {
 }
 
 extension PersistanceManager {
-    func fetchRecords<T: NSManagedObject> (objectType: T.Type) -> [T]? {
+    func fetchRecords<T: NSManagedObject> (objectType: T.Type, predicate: NSPredicate? = nil) -> [T]? {
         do {
-            guard let result = try managerObjectContext.fetch(objectType.fetchRequest()) as? [T] else {
+            let managedObject = managerObjectContext
+            let fetchRequest = objectType.fetchRequest()
+            if let havePredicate = predicate {
+                fetchRequest.predicate = havePredicate
+            }
+            guard let result = try managedObject.fetch(fetchRequest) as? [T] else {
                 return []
             }
             return result

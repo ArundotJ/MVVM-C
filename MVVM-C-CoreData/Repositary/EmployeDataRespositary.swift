@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import CoreData
 
 
 final class EmployeDataRespositary: RepositaryHandler {
     
     func createRecord(record: Employe) {
         let newRecored = CDEmploye(context: PersistanceManager.shared.managerObjectContext)
-        newRecored.id = UUID()
+        newRecored.id = record.id
         newRecored.employeId = Int16(record.employeID ?? 0)
         newRecored.profileImageData = record.profileImage
         newRecored.name = record.name
@@ -27,11 +28,34 @@ final class EmployeDataRespositary: RepositaryHandler {
         return []
     }
     
-    func updateRecord(id: Int) {
-        
+    func getRecord(id: UUID) -> Employe? {
+        return getCDEmployeRecord(id: id)?.convertToEmploye()
     }
     
-    func deleteRecord(record: Employe) {
+    private func getCDEmployeRecord(id: UUID) -> CDEmploye? {
+        let predicate = NSPredicate(format: "id == %@", id as CVarArg)
+        if let employeRecord = PersistanceManager.shared.fetchRecords(objectType: CDEmploye.self, predicate: predicate)?.first {
+            return employeRecord
+        }
+        return nil
+    }
+    
+    func updateRecord(employeData: Employe) {
         
+        guard let idValue = employeData.id, let record = getCDEmployeRecord(id: idValue) else {
+            return
+        }
+        record.name = employeData.name
+        record.employeId = Int16(employeData.employeID ?? 0)
+        record.profileImageData = employeData.profileImage
+        record.phoneNumber = Int64(employeData.phone)
+        PersistanceManager.shared.saveChanges()
+    }
+    
+    func deleteRecord(id: UUID) {
+        guard let record = getCDEmployeRecord(id: id) else {
+            return
+        }
+        PersistanceManager.shared.managerObjectContext.delete(record)
     }
 }

@@ -31,6 +31,8 @@ extension ImagePickerCoordinator: UIImagePickerControllerDelegate, UINavigationC
         guard let selectedImage = info[.originalImage] as? UIImage else {
             return
         }
-        self.parentCoordinator?.didFinishImagePicking(from: self, image: selectedImage)
+        DispatchQueue.main.async {
+            self.parentCoordinator?.didFinishImagePicking(from: self, image: selectedImage)
+        }
     }
 }

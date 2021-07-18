@@ -12,6 +12,10 @@ protocol EmployeDetailsViewModelType {
     var profileImage: UIImage? { get }
     var phoneNumber: String { get }
     var employeID: String { get }
+    var didUpdateChages: () -> Void { get set }
+    func updateButtonTapped()
+    func viewDidDisappear()
+    func deleteButtonTapped()
 }
 
 final class EmployeDetailsViewModel: EmployeDetailsViewModelType {
@@ -28,14 +32,51 @@ final class EmployeDetailsViewModel: EmployeDetailsViewModelType {
         UIImage(data: employe.profileImage ?? Data())
     }
     
+    var didUpdateChages: () -> Void = {}
+    
     var phoneNumber: String {
         return "Phone:    \(employe.phone)"
     }
     
-    let employe: Employe
+    var employe: Employe
     
-    init(employe: Employe) {
-        self.employe = employe
+    private let dataManager: EmployeDataManagerType
+    
+    weak var coordinator: EmployeDetailsCoordinator? {
+        didSet {
+            updateLatestRecordChanges()
+        }
+    }
+    
+    init(employeID: UUID, employeDataManager: EmployeDataManagerType) {
+        self.dataManager = employeDataManager
+        self.employe = employeDataManager.getRecordFromID(id: employeID) ?? Employe.empty()
+    }
+    
+    private func updateLatestRecordChanges() {
+        self.coordinator?.refreshUI = { [weak self] in
+            guard let self = self, let id = self.employe.id else {
+                return
+            }
+            self.employe = self.dataManager.getRecordFromID(id: id) ?? Employe.empty()
+            self.didUpdateChages()
+        }
+    }
+    
+    func updateButtonTapped() {
+        coordinator?.loadUpdateEmployeDetails(record: employe)
+    }
+    
+    func viewDidDisappear() {
+        coordinator?.viewDidDisappear()
+    }
+    
+    func deleteButtonTapped() {
+        guard let employeUUID = employe.id else {
+            return
+        }
+        self.dataManager.deleteEmployeRecord(id: employeUUID)
+        coordinator?.popEmployeDetailsController()
     }
     
 }
